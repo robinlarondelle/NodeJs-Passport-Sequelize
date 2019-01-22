@@ -6,6 +6,12 @@ const env = require("dotenv").load()
 let express = require("express")
 let app = express()
 
+//Import models and sync Sequelize
+const models = require("./app/models")
+models.sequelize.sync()
+  .then(() => console.log("Database OK"))
+  .catch(err => console.log("Database Error: " + err))
+
 //Initialize bodyparser and format body to json format
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
