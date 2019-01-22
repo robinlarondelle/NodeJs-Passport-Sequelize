@@ -1,6 +1,7 @@
 const passport = require('passport')
 const session = require("express-session")
 const bodyParser = require("body-parser")
+const env = require("dotenv").load()
 
 let express = require("express")
 let app = express()
@@ -18,6 +19,7 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session()) //persistent login sessions
 
+//Catch all GET requests with no specified pathnames
 app.get('/', (req, res) => {
   res.send("Welcome to my app")
 })
