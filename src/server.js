@@ -2,6 +2,7 @@ const passport = require('passport')
 const session = require("express-session")
 const bodyParser = require("body-parser")
 const env = require("dotenv").load()
+var exphbs = require('express-handlebars')
 
 let express = require("express")
 let app = express()
@@ -24,6 +25,16 @@ app.use(session({
 }))
 app.use(passport.initialize())
 app.use(passport.session()) //persistent login sessions
+
+//For Handlebars
+app.set('views', __dirname + '/app/views')
+app.engine('hbs', exphbs({
+    extname: '.hbs'
+}));
+app.set('view engine', '.hbs');
+
+//Routes
+var authRoute = require('./app/routes/auth.routes.js')(app);
 
 //Catch all GET requests with no specified pathnames
 app.get('/', (req, res) => {

@@ -29,6 +29,12 @@ Object.keys(db).forEach(modelName => { // For every entry in the Db object
   }
 })
 
+sequelize.authenticate().then(function(){
+  console.log("sucess");
+}).catch(function(error){
+  console.log("error: "+error);
+});
+
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
  
