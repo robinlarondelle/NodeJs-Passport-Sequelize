@@ -7,8 +7,8 @@ let express = require("express")
 let app = express()
 
 //Import models and sync Sequelize
-const models = require("./app/models")
-models.sequelize.sync()
+const models = require("./app/models") // get the index.js file from the models file
+models.sequelize.sync() // sync all the models in the models folder
   .then(() => console.log("Database OK"))
   .catch(err => console.log("Database Error: " + err))
 

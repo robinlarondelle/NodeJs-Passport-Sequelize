@@ -4,13 +4,13 @@
 
 "use strict"
 
-var fs = require("fs") //Using the Node.js File System (fs) to use CRUD on files
-var path = require('path')
-var Sequelize = require("sequelize")
-var env = process.env.NODE_ENV || "development" //Get the current NODE_ENV environment vaiable
-var config = require(path.join(__dirname, '..', 'config', 'config.json'))[env]; //Connect to the correct config, depending on the NODE_ENV
-var sequelize = new Sequelize(config.database, config.username, config.password, config); //Setup Sequelize witht the config credentials
-var db = {};
+const fs = require("fs") //Using the Node.js File System (fs) to use CRUD on files
+const path = require('path')
+const Sequelize = require("sequelize")
+const env = process.env.NODE_ENV || "development" //Get the current NODE_ENV environment vaiable
+const config = require(path.join(__dirname, '..', 'config', 'config.json'))[env]; //Connect to the correct config, depending on the NODE_ENV
+const sequelize = new Sequelize(config.database, config.username, config.password, config); //Setup Sequelize witht the config credentials
+const db = {};
 
 fs
   .readdirSync(__dirname) // __dirname is a Global Attribute which returns an String[] with all files from the current directory
