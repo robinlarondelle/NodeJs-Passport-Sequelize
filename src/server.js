@@ -34,12 +34,21 @@ app.engine('hbs', exphbs({
 app.set('view engine', '.hbs');
 
 //Routes
-var authRoute = require('./app/routes/auth.routes.js')(app);
+var authRoute = require('./app/routes/auth.routes.js')(app, passport);
+require("./app/config/passport/passport")(passport, models.user)
 
 //Catch all GET requests with no specified pathnames
 app.get('/', (req, res) => {
   res.send("Welcome to my app")
 })
+
+app.post('/signup', passport.authenticate('local-signup', {
+  successRedirect: '/dashboard',
+
+  failureRedirect: '/signup'
+}
+
+));
 
 app.listen(3000, (err) => {
   if(!err) console.log("Server running on port 3000");
